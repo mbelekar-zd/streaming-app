@@ -1,0 +1,9 @@
+{
+  "items": [
+    {
+      "name": "baz",
+      "age": 32
+    }
+  ],
+  "next": null
+}

@@ -1,0 +1,9 @@
+{
+  "items": [
+    {
+      "name": "bar",
+      "age": 31
+    }
+  ],
+  "next": "03.json"
+}
