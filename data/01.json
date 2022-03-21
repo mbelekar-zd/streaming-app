@@ -2,8 +2,8 @@
   "items": [
     {
       "name": "foo",
-      "age1": 30
+      "age": 30
     }
   ],
-  "next": "02.json"
+  "next": "/Users/manasi.belekar/project/practice/streaming-app/data/02.json"
 }
