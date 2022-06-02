@@ -1,13 +1,16 @@
 package streamingapp
 
 import io.circe
+import io.circe.parser._
 import monix.eval.Task
 import monix.reactive.Observable
 
 import scala.io.Source
-import io.circe.parser._
 
 object Extractor {
+//  def paginateEval[S, A](seed: => S)(f: S => Task[(A, Option[S])]): Observable[A] =
+//    new PaginateEvalObservable(seed, f)
+
   def extractPages(filename: String): Observable[Page] = {
     val x: Observable[Page] = Observable.fromTask(readFile(filename).map(stringToPage).flatMap(Task.fromEither(_)))
     x.flatMap(generateStream(_, Observable.empty))
@@ -22,6 +25,13 @@ object Extractor {
       case None => pages.append(page)
     }
   }
+
+//  def extractPages(filename: String): Observable[Page] = {
+//    Observable.paginateEval(filename){ filename =>
+//      val readPage: Task[Page] = readFile(filename).map(stringToPage).flatMap(Task.fromEither(_))
+//      readPage.map (page =>(page, page.next))
+//    }
+//  }
 
   // Wrapped in a task to make it re-usable
   private def readFile(filename: String): Task[String] = Task {
